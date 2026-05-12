@@ -265,13 +265,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #f3f4f6;
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: 1px solid var(--color-line-soft);
+    gap: var(--space-3);
   }
 
-  /* Override card h2 default when inside the header row */
-  .card-header h2 {
+  .card-header :global(h2) {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
@@ -280,81 +280,121 @@
   .summary {
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 16px;
-    row-gap: 2px;
-    font-size: 13px;
+    column-gap: var(--space-6);
+    row-gap: 0;
+    font-size: 14px;
   }
 
   .summary dt {
-    color: #6b7280;
+    color: var(--color-ink-muted);
     font-weight: 500;
     white-space: nowrap;
-    padding: 3px 0;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-line-hair);
   }
 
   .summary dd {
-    color: #111827;
-    padding: 3px 0;
+    color: var(--color-ink);
+    padding: var(--space-2) 0;
     word-break: break-all;
+    border-bottom: 1px solid var(--color-line-hair);
+    font-weight: 500;
+  }
+
+  .summary dt:last-of-type,
+  .summary dd:last-of-type {
+    border-bottom: none;
   }
 
   .status-note {
-    font-size: 12px;
-    color: #9ca3af;
-    margin-top: 12px;
+    font-size: 13px;
+    color: var(--color-ink-muted);
+    margin-top: var(--space-4);
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-line-soft);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .status-note::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-green-bright);
+    box-shadow: 0 0 0 0 rgba(0, 184, 113, 0.45);
+    animation: pulse 1.6s ease-out infinite;
   }
 
   .status-note.terminal {
-    color: #16a34a;
+    color: var(--color-green-darker);
+  }
+
+  .status-note.terminal::before {
+    background: var(--color-green);
+    animation: none;
+  }
+
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 184, 113, 0.45);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgba(0, 184, 113, 0);
+    }
   }
 
   /* Application status badge colours */
   .status-submitted {
-    background: #f3f4f6;
-    color: #374151;
-    border-color: #d1d5db;
+    background: var(--color-slate-tint);
+    color: var(--color-slate);
+    border-color: var(--color-slate-line);
   }
 
   .status-credit_check_pending {
-    background: #fffbeb;
-    color: #92400e;
-    border-color: #fde68a;
+    background: var(--color-amber-tint);
+    color: var(--color-amber);
+    border-color: var(--color-amber-line);
   }
 
   .status-offer_reserved {
-    background: #eff6ff;
-    color: #1e40af;
-    border-color: #bfdbfe;
+    background: var(--color-blue-tint);
+    color: var(--color-blue);
+    border-color: var(--color-blue-line);
   }
 
   .status-completed {
-    background: #f0fdf4;
-    color: #15803d;
-    border-color: #bbf7d0;
+    background: var(--color-green-pale);
+    color: var(--color-green-darker);
+    border-color: var(--color-green);
   }
 
   .status-rejected {
-    background: #fef2f2;
-    color: #b91c1c;
-    border-color: #fecaca;
+    background: var(--color-red-tint);
+    color: var(--color-red);
+    border-color: var(--color-red-line);
   }
 
   .status-compensation_required {
-    background: #fff7ed;
-    color: #c2410c;
-    border-color: #fed7aa;
+    background: var(--color-amber-tint);
+    color: var(--color-amber);
+    border-color: var(--color-amber-line);
   }
 
   .status-compensated {
-    background: #fdf4ff;
-    color: #7e22ce;
-    border-color: #e9d5ff;
+    background: var(--color-purple-tint);
+    color: var(--color-purple);
+    border-color: var(--color-purple-line);
   }
 
   /* SLA visibility for pending async dependencies */
   .waiting-label {
-    margin-right: 8px;
+    margin-right: var(--space-2);
     text-transform: capitalize;
+    color: var(--color-amber);
+    font-weight: 600;
   }
 
   .sla-badge {
@@ -362,55 +402,53 @@
   }
 
   .sla-ok {
-    background: #f0fdf4;
-    color: #15803d;
-    border-color: #bbf7d0;
+    background: var(--color-green-pale);
+    color: var(--color-green-darker);
+    border-color: var(--color-green);
   }
 
   .sla-warn {
-    background: #fffbeb;
-    color: #b45309;
-    border-color: #fde68a;
+    background: var(--color-amber-tint);
+    color: var(--color-amber);
+    border-color: var(--color-amber-line);
   }
 
   .sla-breached {
-    background: #fef2f2;
-    color: #b91c1c;
-    border-color: #fecaca;
+    background: var(--color-red-tint);
+    color: var(--color-red);
+    border-color: var(--color-red-line);
   }
 
-  /* Neutral grey for externally stopped workflows. Distinct from the
-     business-outcome SLA states so terminated executions are not mistaken
-     for a met or breached SLA. */
   .sla-stopped {
-    background: #f3f4f6;
-    color: #4b5563;
-    border-color: #d1d5db;
+    background: var(--color-slate-tint);
+    color: var(--color-slate);
+    border-color: var(--color-slate-line);
   }
 
   .sla-progress {
-    margin-top: 4px;
+    margin-top: var(--space-2);
     width: 100%;
-    height: 4px;
-    background: #f3f4f6;
-    border-radius: 2px;
+    height: 6px;
+    background: var(--color-line-soft);
+    border-radius: var(--radius-pill);
     overflow: hidden;
   }
 
   .sla-progress-bar {
     height: 100%;
-    background: #16a34a;
+    background: var(--color-green);
+    border-radius: var(--radius-pill);
     transition:
       width 0.5s linear,
       background-color 0.2s linear;
   }
 
   .sla-progress-warn .sla-progress-bar {
-    background: #d97706;
+    background-color: var(--color-amber);
   }
 
   .sla-progress-breached .sla-progress-bar {
-    background: #dc2626;
+    background-color: var(--color-red);
     width: 100% !important;
   }
 </style>

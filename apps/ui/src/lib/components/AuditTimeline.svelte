@@ -46,11 +46,12 @@
 <style>
   .timeline {
     list-style: none;
+    margin-top: var(--space-1);
   }
 
   .timeline-entry {
     display: flex;
-    gap: 12px;
+    gap: var(--space-4);
   }
 
   .entry-connector {
@@ -58,122 +59,127 @@
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
-    width: 14px;
+    width: 16px;
   }
 
   .entry-dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 2px solid currentColor;
     flex-shrink: 0;
-    margin-top: 6px;
+    margin-top: var(--space-2);
+    background: currentColor;
+    box-shadow: 0 0 0 3px var(--color-surface);
   }
 
   .dot-started {
-    color: #3b82f6;
-    background: #eff6ff;
+    color: var(--color-blue);
   }
 
   .dot-completed {
-    color: #16a34a;
-    background: #f0fdf4;
+    color: var(--color-green);
   }
 
   .dot-failed {
-    color: #dc2626;
-    background: #fef2f2;
+    color: var(--color-red);
   }
 
   .dot-waiting {
-    color: #d97706;
-    background: #fffbeb;
+    color: var(--color-amber);
   }
 
   .entry-line {
     flex: 1;
     width: 2px;
-    background: #e5e7eb;
-    margin: 4px 0 0;
-    min-height: 16px;
+    background: var(--color-line);
+    margin: var(--space-2) 0 0;
+    min-height: var(--space-5);
+    border-radius: var(--radius-pill);
   }
 
   .entry-body {
     flex: 1;
-    padding-bottom: 18px;
+    padding-bottom: var(--space-5);
     min-width: 0;
   }
 
   .entry-main {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-3);
     flex-wrap: wrap;
   }
 
   .entry-step {
     font-weight: 600;
-    color: #111827;
+    color: var(--color-ink);
+    font-size: 14px;
   }
 
   .entry-time {
     font-size: 12px;
-    color: #9ca3af;
+    color: var(--color-ink-muted);
     margin-left: auto;
+    font-family: var(--font-mono);
+    letter-spacing: -0.01em;
   }
 
   .entry-details {
-    font-size: 13px;
-    color: #374151;
-    margin-top: 5px;
-    line-height: 1.4;
+    font-size: 14px;
+    color: var(--color-ink-soft);
+    margin-top: var(--space-2);
+    line-height: 1.5;
   }
 
   .entry-meta {
     display: grid;
     grid-template-columns: auto 1fr;
-    column-gap: 12px;
-    row-gap: 2px;
-    margin-top: 8px;
-    padding: 8px 10px;
-    background: #f9fafb;
-    border: 1px solid #f3f4f6;
-    border-radius: 4px;
-    font-size: 12px;
+    column-gap: var(--space-4);
+    row-gap: 0;
+    margin-top: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    background: var(--color-surface-alt);
+    border: 1px solid var(--color-line-soft);
+    border-radius: var(--radius-sm);
+    font-size: 13px;
   }
 
   .entry-meta dt {
-    color: #6b7280;
+    color: var(--color-ink-muted);
     white-space: nowrap;
+    padding: var(--space-1) 0;
+    font-size: 12px;
+    font-weight: 500;
   }
 
   .entry-meta dd {
-    color: #374151;
+    color: var(--color-ink);
     word-break: break-all;
+    padding: var(--space-1) 0;
   }
 
   /* Timeline step status badge colours */
   .tbadge-started {
-    background: #eff6ff;
-    color: #1e40af;
-    border-color: #bfdbfe;
+    background: var(--color-blue-tint);
+    color: var(--color-blue);
+    border-color: var(--color-blue-line);
   }
 
   .tbadge-completed {
-    background: #f0fdf4;
-    color: #15803d;
-    border-color: #bbf7d0;
+    background: var(--color-green-pale);
+    color: var(--color-green-darker);
+    border-color: var(--color-green);
   }
 
   .tbadge-failed {
-    background: #fef2f2;
-    color: #b91c1c;
-    border-color: #fecaca;
+    background: var(--color-red-tint);
+    color: var(--color-red);
+    border-color: var(--color-red-line);
   }
 
   .tbadge-waiting {
-    background: #fffbeb;
-    color: #92400e;
-    border-color: #fde68a;
+    background: var(--color-amber-tint);
+    color: var(--color-amber);
+    border-color: var(--color-amber-line);
   }
 </style>

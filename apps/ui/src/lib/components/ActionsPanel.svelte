@@ -246,15 +246,17 @@
         {#if propertyValuationError}
           <p class="error">{propertyValuationError}</p>
         {/if}
-        <button
-          type="submit"
-          class="btn-primary"
-          disabled={propertyValuationLoading}
-        >
-          {propertyValuationLoading
-            ? 'Submitting…'
-            : 'Submit Property Valuation'}
-        </button>
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="btn-primary"
+            disabled={propertyValuationLoading}
+          >
+            {propertyValuationLoading
+              ? 'Submitting…'
+              : 'Submit Property Valuation'}
+          </button>
+        </div>
       </form>
     </div>
   {:else if showCreditCheckForm}
@@ -285,9 +287,11 @@
         {#if creditError}
           <p class="error">{creditError}</p>
         {/if}
-        <button type="submit" class="btn-primary" disabled={creditLoading}>
-          {creditLoading ? 'Submitting…' : 'Submit Credit Check'}
-        </button>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" disabled={creditLoading}>
+            {creditLoading ? 'Submitting…' : 'Submit Credit Check'}
+          </button>
+        </div>
       </form>
     </div>
   {:else if showContinuingCue}
@@ -337,79 +341,105 @@
 
 <style>
   .action-block {
-    border: 1px solid #fde68a;
-    background: #fffbeb;
-    border-radius: 6px;
-    padding: 14px;
+    border: 1px solid var(--color-amber-line);
+    background: var(--color-amber-tint);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
   }
 
   .action-block h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: #92400e;
-    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: var(--space-2);
   }
 
-  .action-block .hint {
-    margin-bottom: 12px;
+  .action-block :global(.hint) {
+    margin-bottom: var(--space-3);
+    color: var(--color-ink-soft);
   }
 
-  /* Passive cue shown while Temporal is progressing the workflow without
-     waiting on operator input. Deliberately calm blue tones so it reads as
-     informational, not as an error or required action. */
+  /* Passive cue shown while Temporal is progressing the workflow. */
   .continuing-cue {
-    border: 1px solid #bfdbfe;
-    background: #eff6ff;
-    border-radius: 6px;
-    padding: 14px;
+    border: 1px solid var(--color-green);
+    background: var(--color-green-pale);
+    border-radius: var(--radius-md);
+    padding: var(--space-4) var(--space-5);
   }
 
   .continuing-cue h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1e40af;
-    margin-bottom: 6px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-green-darker);
+    margin-bottom: var(--space-2);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .continuing-cue h3::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-green-bright);
+    box-shadow: 0 0 0 0 rgba(0, 184, 113, 0.5);
+    animation: ring 1.6s ease-out infinite;
+  }
+
+  @keyframes ring {
+    0% {
+      box-shadow: 0 0 0 0 rgba(0, 184, 113, 0.55);
+    }
+    100% {
+      box-shadow: 0 0 0 12px rgba(0, 184, 113, 0);
+    }
   }
 
   .continuing-cue p {
-    font-size: 12px;
-    color: #1e3a8a;
+    font-size: 13px;
+    color: var(--color-green-darker);
     margin: 0;
+    line-height: 1.5;
   }
 
   .rate-value {
     font-weight: 600;
-    color: #1d4ed8;
-    margin-left: 4px;
+    color: var(--color-green-dark);
+    margin-left: var(--space-2);
+    font-variant-numeric: tabular-nums;
   }
 
   .operator-section {
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid #e5e7eb;
+    margin-top: var(--space-5);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-line-soft);
   }
 
   .operator-section h3 {
-    font-size: 13px;
-    font-weight: 600;
-    color: #374151;
-    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin-bottom: var(--space-3);
   }
 
   .operator-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-3) var(--space-5);
+  }
+
+  .operator-action {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-start;
+    gap: var(--space-2);
   }
 
-  .operator-action button {
-    width: 100%;
-  }
-
-  .operator-action .hint {
-    font-size: 12px;
-    color: #6b7280;
-    margin-top: 4px;
-    margin-bottom: 0;
+  .operator-action :global(.hint) {
+    font-size: 12.5px;
+    color: var(--color-ink-muted);
+    margin: 0;
   }
 </style>
